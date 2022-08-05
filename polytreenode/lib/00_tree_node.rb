@@ -27,9 +27,9 @@ class PolyTreeNode
       child.parent=(nil)
     end
 
-    # def inspect
-    #   "Val: #{@value} | Parent: #{@parent ? @parent.value : 'none'} | Children: #{@children.map{|child| child.value}}"
-    # end
+    def inspect
+      "Val: #{@value} | Parent: #{@parent ? @parent.value : 'none'} | Children: #{@children.map{|child| child.value}}"
+    end
 
     def dfs(target)
         # return nil if self.children.empty? && self.value != target
