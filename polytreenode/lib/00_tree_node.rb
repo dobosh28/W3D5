@@ -27,11 +27,28 @@ class PolyTreeNode
       child.parent=(nil)
     end
 
-    def inspect
-      "Val: #{@value} | Parent: #{@parent ? @parent.value : 'none'} | Children: #{@children.map{|child| child.value}}"
+    # def inspect
+    #   "Val: #{@value} | Parent: #{@parent ? @parent.value : 'none'} | Children: #{@children.map{|child| child.value}}"
+    # end
+
+    def dfs(target)
+        # return nil if self.children.empty? && self.value != target
+        return self if self.value == target
+        self.children.each do |child|
+            result = child.dfs(target)
+            return result if result
+        end
+        nil
     end
-end
 
-class Searchable
-
+    def bfs(target)
+        queue = []
+        queue << self
+        until queue.empty? 
+            node = queue.shift
+            return node if node.value == target
+            queue += node.children
+        end
+        nil
+    end
 end
